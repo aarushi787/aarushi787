@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aarushi Gupta — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #fdf6ee;
+    --cream-dark: #f5ead8;
+    --terracotta: #c4613a;
+    --terracotta-light: #e8845f;
+    --clay: #8b4a2f;
+    --sage: #6b7f6a;
+    --sage-light: #8fa68e;
+    --warm-black: #1c1410;
+    --warm-gray: #5a4f47;
+    --warm-gray-light: #9e9189;
+    --border: #e0d4c4;
+    --card-bg: #fefaf5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--warm-black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(253,246,238,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--warm-black);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -120px; top: -80px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(196,97,58,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 30%; bottom: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(107,127,106,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-left { animation: fadeUp 0.9s ease both; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow span {
+    display: inline-block; width: 28px; height: 1px;
+    background: var(--terracotta);
+  }
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 0.3rem;
+    color: var(--warm-black);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--warm-gray);
+    margin: 1.2rem 0 2rem;
+    max-width: 420px;
+    line-height: 1.75;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem;
+  }
+  .tag {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--warm-gray);
+    background: var(--card-bg);
+    letter-spacing: 0.02em;
+  }
+  .tag.highlight {
+    background: var(--terracotta);
+    color: white;
+    border-color: var(--terracotta);
+  }
+  .hero-cta {
+    display: flex; gap: 14px; align-items: center;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 11px 28px;
+    background: var(--warm-black);
+    color: var(--cream);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--terracotta); transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--warm-gray);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--terracotta); }
+
+  .hero-right {
+    animation: fadeUp 0.9s 0.2s ease both;
+    position: relative;
+  }
+  .hero-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '"';
+    font-family: 'Lora', serif;
+    font-size: 6rem;
+    color: var(--cream-dark);
+    position: absolute;
+    top: -20px; left: 20px;
+    line-height: 1;
+  }
+  .hero-quote {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--warm-gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--card-bg);
+    padding: 1.1rem 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--warm-gray-light);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 5rem;
+    border-top: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--terracotta);
+    opacity: 0.7;
+  }
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 500;
+    color: var(--warm-black);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--sage));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,20,16,0.08); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.1rem;
+  }
+  .project-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--warm-black);
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.7;
+    margin-bottom: 1.1rem;
+  }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .tech-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--cream-dark);
+    color: var(--warm-gray);
+  }
+  .project-highlight {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--terracotta);
+    margin-top: 0.75rem;
+    display: block;
+  }
+
+  /* EXPERIENCE */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1px 1fr;
+    gap: 0 2rem;
+    padding-bottom: 3rem;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--warm-gray-light);
+    text-align: right;
+    padding-top: 4px;
+    line-height: 1.5;
+  }
+  .timeline-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .timeline-connector {
+    flex: 1;
+    width: 1px;
+    background: var(--border);
+    margin-top: 6px;
+  }
+  .timeline-item:last-child .timeline-connector { display: none; }
+  .timeline-content { padding-top: 0; }
+  .timeline-role {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .timeline-company {
+    font-size: 0.82rem;
+    color: var(--terracotta);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .timeline-bullets {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .timeline-bullets li {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--terracotta);
+    opacity: 0.5;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+  .skill-list {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .skill-item {
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .achievement-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .achievement-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .achievement-title {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--warm-black);
+  }
+  .achievement-desc {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--warm-black);
+    color: var(--cream);
+    border-top: none;
+  }
+  .contact-section h2 { color: var(--cream); }
+  .contact-section .section-num { color: var(--terracotta-light); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .contact-intro {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(253,246,238,0.7);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(253,246,238,0.12);
+    border-radius: 10px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(196,97,58,0.15);
+    border-color: var(--terracotta);
+  }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: rgba(253,246,238,0.08);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-link-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(253,246,238,0.4);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--warm-black);
+    color: rgba(253,246,238,0.3);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(253,246,238,0.06);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .timeline-item { grid-template-columns: 1px 1fr; }
+    .timeline-date { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Aarushi Gupta</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="border-top:none; padding-top:7rem;">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span></span>Software Engineer</div>
+    <h1>Hi, I'm<br><em>Aarushi.</em></h1>
+    <p class="hero-sub">I build AI systems, ship iOS apps, and figure out why things break before they break in production. B.Tech in Computer Science from SRMIST, graduated May 2025 — 8.91 CGPA, First Class with Distinction.</p>
+
+    <div class="hero-cta">
+      <a href="tel:+919027281814" class="btn-primary">Get in touch</a>
+      <a href="https://github.com/aarushi787" class="btn-ghost" target="_blank">GitHub →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <p class="hero-quote">I built a job-matching system without any LLMs — regex, n-grams, curated dictionaries. Fully auditable. Made me think hard about what AI is actually doing vs. what we assume it's doing.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">22+</span>
+          <span class="stat-label">GitHub Repos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">50k+</span>
+          <span class="stat-label">SIH Teams Beat</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">8.91</span>
+          <span class="stat-label">CGPA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-icon">🧠</div>
+      <div class="project-title">Resume Parser & Job Matcher</div>
+      <div class="project-desc">Built without any LLMs — regex, n-gram tokenisation, curated skills dictionary. Fully auditable, zero black-box. A deliberate choice to understand what's happening inside the system, not just what it outputs.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">n-gram NLP</span>
+        <span class="tech-pill">No LLMs</span>
+      </div>
+      <span class="project-highlight">↗ Fully interpretable matching pipeline</span>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🔢</div>
+      <div class="project-title">Mathematical Reasoning Engine</div>
+      <div class="project-desc">DeepSeek-powered inference engine for mathematical problem-solving. Integrated with Flask + FastAPI microservices for real-time API access. Achieved 25% accuracy improvement over baseline.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">DeepSeek</span>
+        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">FastAPI</span>
+      </div>
+      <span class="project-highlight">↗ 25% accuracy improvement</span>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🔍</div>
+      <div class="project-title">Fraud Detection System</div>
+      <div class="project-desc">ML-based fraud detection framework with feature engineering and cross-validation pipeline. Achieves 95% precision on transaction datasets with anomaly flagging and interpretable model evaluation.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">scikit-learn</span>
+        <span class="tech-pill">ML Pipeline</span>
+      </div>
+      <span class="project-highlight">↗ 95% precision on real datasets</span>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">📊</div>
+      <div class="project-title">SAP O2C Graph Explorer</div>
+      <div class="project-desc">Force-directed graph visualisation of SAP Order-to-Cash workflows with a natural language to SQL query interface. Includes anomaly detection and an interactive O2C flow tracer.</div>
+      <div class="project-tech">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">D3.js</span>
+        <span class="tech-pill">NL→SQL</span>
+      </div>
+      <span class="project-highlight">↗ Anomaly detection in O2C flow</span>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🌫️</div>
+      <div class="project-title">Air Pollution Forecasting</div>
+      <div class="project-desc">Two-stage anomaly detection using Isolation Forest & LOF. Integrated ARIMA + LSTM models for time-series forecasting. Decreased forecasting error by 20% over baseline.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">LSTM</span>
+        <span class="tech-pill">ARIMA</span>
+        <span class="tech-pill">Isolation Forest</span>
+      </div>
+      <span class="project-highlight">↗ 20% error reduction</span>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🏥</div>
+      <div class="project-title">Swaath — Hospital Management</div>
+      <div class="project-desc">Full iOS app in Swift + SwiftUI with HealthKit for real-time patient vitals, EventKit for appointments, Firebase auth and real-time sync. Shipped in production pilot supporting 100+ daily users at 99%+ reliability.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Swift</span>
+        <span class="tech-pill">SwiftUI</span>
+        <span class="tech-pill">HealthKit</span>
+        <span class="tech-pill">Firebase</span>
+      </div>
+      <span class="project-highlight">↗ 100+ daily users, 99%+ uptime</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2>Experience</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Apr 2024<br>– Mar 2025</div>
+      <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-role">Strategic Operations Lead</div>
+        <div class="timeline-company">SRM Placement Team (Placfv's) · Chennai</div>
+        <ul class="timeline-bullets">
+          <li>Led a 20-person cross-functional team managing placement for 5,000+ students</li>
+          <li>30% efficiency improvement through automated reporting infrastructure</li>
+          <li>Managed 200+ corporate recruiters at 95%+ stakeholder satisfaction</li>
+          <li>Mentored 500+ students; improved placement success rates by 15%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Apr 2024<br>– May 2024</div>
+      <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-role">iOS App Developer</div>
+        <div class="timeline-company">Infosys · Mysore</div>
+        <ul class="timeline-bullets">
+          <li>Shipped hospital management iOS app to 100+ daily users in production pilot</li>
+          <li>Built end-to-end in Swift & SwiftUI with HealthKit and EventKit integration</li>
+          <li>Achieved 99%+ reliability post-QA; delivered within 2-month Agile timeline</li>
+          <li>Awarded for technical excellence in Apple × Infosys collaborative project</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Aug 2023<br>– Sep 2023</div>
+      <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-role">Web Development Intern</div>
+        <div class="timeline-company">Gauravgo Technologies · Jharkhand</div>
+        <ul class="timeline-bullets">
+          <li>Built mobile-first UIs with HTML5, JavaScript, SQL</li>
+          <li>40% improvement in user engagement via optimised interfaces</li>
+          <li>Resolved cross-browser compatibility issues across component library</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2>Skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-list">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">Swift</span>
+        <span class="skill-item">JavaScript</span>
+        <span class="skill-item">TypeScript</span>
+        <span class="skill-item">SQL</span>
+        <span class="skill-item">C / C++</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">iOS Development</div>
+      <div class="skill-list">
+        <span class="skill-item">SwiftUI</span>
+        <span class="skill-item">HealthKit</span>
+        <span class="skill-item">EventKit</span>
+        <span class="skill-item">Firebase</span>
+        <span class="skill-item">CoreData</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Web & Backend</div>
+      <div class="skill-list">
+        <span class="skill-item">React</span>
+        <span class="skill-item">Next.js</span>
+        <span class="skill-item">Node.js</span>
+        <span class="skill-item">RESTful APIs</span>
+        <span class="skill-item">D3.js</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">AI & ML</div>
+      <div class="skill-list">
+        <span class="skill-item">scikit-learn</span>
+        <span class="skill-item">LSTM / ARIMA</span>
+        <span class="skill-item">DeepSeek</span>
+        <span class="skill-item">Prompt Engineering</span>
+        <span class="skill-item">OpenCV</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Tools & Methods</div>
+      <div class="skill-list">
+        <span class="skill-item">Git</span>
+        <span class="skill-item">Jira</span>
+        <span class="skill-item">Agile / Scrum</span>
+        <span class="skill-item">Jupyter</span>
+        <span class="skill-item">Power BI</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Human Languages</div>
+      <div class="skill-list">
+        <span class="skill-item">Hindi (native)</span>
+        <span class="skill-item">English (fluent)</span>
+        <span class="skill-item">Hinglish (daily)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2>Recognition</h2>
+  </div>
+  <div class="achievements-grid">
+    <div class="achievement-card reveal">
+      <div class="achievement-icon">🏆</div>
+      <div>
+        <div class="achievement-title">Smart India Hackathon 2023 — Top 10</div>
+        <div class="achievement-desc">Top 10 finalist out of 50,000+ teams nationally. Ministry of Education, Govt. of India. Built an Attendance Management System using Facial Recognition; presented live to a government panel.</div>
+      </div>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-icon">🌍</div>
+      <div>
+        <div class="achievement-title">McKinsey Forward Program</div>
+        <div class="achievement-desc">Selected for McKinsey & Company's global leadership and capability-building cohort (Dec 2025). Competitive selection from applicants worldwide.</div>
+      </div>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-icon">📄</div>
+      <div>
+        <div class="achievement-title">Published Researcher — ICCI 2025</div>
+        <div class="achievement-desc">Published at International Conference on Computational Intelligence. Paper: "Hyperdimensional Algorithmic Structures for Convergence in Computational Deductive Systems."</div>
+      </div>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-icon">🍎</div>
+      <div>
+        <div class="achievement-title">Apple × Infosys Award</div>
+        <div class="achievement-desc">Awarded for technical excellence and leadership in the Apple × Infosys × SRMIST collaborative iOS development project.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="section-header" style="margin-bottom:1rem;">
+        <span class="section-num">05</span>
+        <h2>Say hello</h2>
+      </div>
+      <p class="contact-intro">I'm actively looking for roles in voice AI, ML engineering, and product-adjacent technical work. Open to relocating to Bangalore immediately.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:aarugupta0509@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div>
+          <span class="contact-link-label">Email</span>
+          aarugupta0509@gmail.com
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/aarushi-gupta-735786222" target="_blank" class="contact-link">
+        <div class="contact-link-icon">💼</div>
+        <div>
+          <span class="contact-link-label">LinkedIn</span>
+          aarushi-gupta-735786222
+        </div>
+      </a>
+      <a href="https://github.com/aarushi787" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🐙</div>
+        <div>
+          <span class="contact-link-label">GitHub</span>
+          github.com/aarushi787 · 22+ repos
+        </div>
+      </a>
+      <a href="tel:+919027281814" class="contact-link">
+        <div class="contact-link-icon">📞</div>
+        <div>
+          <span class="contact-link-label">Phone</span>
+          +91 90272 81814
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  Aarushi Gupta · Bareilly, UP → Bangalore · B.Tech CSE, SRMIST — Graduated May 2025
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
